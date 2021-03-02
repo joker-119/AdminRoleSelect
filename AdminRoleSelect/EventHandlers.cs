@@ -21,7 +21,7 @@ namespace AdminRoleSelect
             Log.Info($"{nameof(OnChangingRole)}: fired");
             if (!first)
                 return;
-            
+
             if (plugin.SelectedRoles.ContainsKey(ev.Player))
                 ev.NewRole = plugin.SelectedRoles[ev.Player];
             else if (plugin.SelectedRoles.Values.Any(r => r == ev.NewRole && (r.GetSide() == Side.Scp || (Player.Get(r).Count() > 3 && r != RoleType.ClassD && r != RoleType.ChaosInsurgency))))

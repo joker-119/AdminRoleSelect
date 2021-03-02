@@ -32,8 +32,7 @@ namespace AdminRoleSelect.Commands
                 return false;
             }
 
-            string[] args = arguments.Array;
-            if (args == null || args.Length < 3)
+            if (arguments.Count < 3)
             {
                 response = "You must select a role.";
                 return false;
@@ -42,11 +41,11 @@ namespace AdminRoleSelect.Commands
             RoleType type = RoleType.None;
             try
             {
-                type = (RoleType) Enum.Parse(typeof(RoleType), args[2]);
+                type = (RoleType) Enum.Parse(typeof(RoleType), arguments.At(2));
             }
             catch (Exception)
             {
-                response = $"You provided an invalid role type: {args[2]}";
+                response = $"You provided an invalid role type: {arguments.At(2)}";
                 return false;
             }
 
