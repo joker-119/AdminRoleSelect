@@ -32,7 +32,8 @@ namespace AdminRoleSelect.Commands
                 return false;
             }
 
-            if (arguments.Count < 3)
+            Log.Info($"{arguments.Count}");
+            if (arguments.Count < 1)
             {
                 response = "You must select a role.";
                 return false;
@@ -41,11 +42,19 @@ namespace AdminRoleSelect.Commands
             RoleType type = RoleType.None;
             try
             {
-                type = (RoleType) Enum.Parse(typeof(RoleType), arguments.At(2));
+                type = (RoleType) Enum.Parse(typeof(RoleType), arguments.At(0));
             }
             catch (Exception)
             {
-                response = $"You provided an invalid role type: {arguments.At(2)}";
+                response = $"You provided an invalid role type: {arguments.At(0)}";
+                return false;
+            }
+            
+            if (arguments.Count == 2)
+                player = Player.Get(arguments.At(1));
+            if (player == null)
+            {
+                response = $"Defined player {arguments.At(1)} not found.";
                 return false;
             }
 
@@ -60,7 +69,7 @@ namespace AdminRoleSelect.Commands
             else
                 Plugin.Instance.SelectedRoles.Add(player, type);
 
-            response = $"You have selected {type} for your spawn role.";
+            response = $"You have selected {type} for {player.Nickname}'s starting role.";
             return false;
         }
 
