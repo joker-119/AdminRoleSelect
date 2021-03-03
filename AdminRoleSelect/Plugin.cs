@@ -10,7 +10,7 @@ namespace AdminRoleSelect
         public override string Author { get; } = "Galaxy119";
         public override string Name { get; } = "AdminRoleSelect";
         public override string Prefix { get; } = "AdminRoleSelect";
-        public override Version Version { get; } = new Version(1, 0, 0);
+        public override Version Version { get; } = new Version(1, 0, 1);
         public override Version RequiredExiledVersion { get; } = new Version(2, 3, 4);
         public EventHandlers EventHandlers { get; private set; }
 
