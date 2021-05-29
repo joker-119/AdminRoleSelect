@@ -20,7 +20,7 @@ namespace AdminRoleSelect.Commands
         }
 
         public override string Command { get; } = "adminroleselect";
-        public override string[] Aliases { get; } = new[] { "ars" };
+        public override string[] Aliases { get; } = { "ars" };
         public override string Description { get; } = "Selects your spawn role.";
     }
 }
