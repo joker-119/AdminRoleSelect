@@ -12,15 +12,14 @@ namespace AdminRoleSelect.Commands
             RegisterCommand(new SelectRole());
         }
 
-        protected override bool ExecuteParent(ArraySegment<string> arguments, ICommandSender sender,
-            out string response)
+        protected override bool ExecuteParent(ArraySegment<string> arguments, ICommandSender sender, out string response)
         {
             response = "Valid sub commands: select RoleType\nIE: ars select Scp173";
             return false;
         }
 
         public override string Command { get; } = "adminroleselect";
-        public override string[] Aliases { get; } = new[] { "ars" };
+        public override string[] Aliases { get; } = { "ars" };
         public override string Description { get; } = "Selects your spawn role.";
     }
 }

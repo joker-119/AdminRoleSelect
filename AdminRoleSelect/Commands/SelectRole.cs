@@ -14,7 +14,7 @@ namespace AdminRoleSelect.Commands
         {
             if (!sender.CheckPermission("ars.select"))
             {
-                response = "Permission denied.";
+                response = "Permission denied. Required: ars.select";
                 return false;
             }
 
@@ -32,26 +32,21 @@ namespace AdminRoleSelect.Commands
                 return false;
             }
 
-            Log.Info($"{arguments.Count}");
             if (arguments.Count < 1)
             {
                 response = "You must select a role.";
                 return false;
             }
 
-            RoleType type = RoleType.None;
-            try
-            {
-                type = (RoleType) Enum.Parse(typeof(RoleType), arguments.At(0));
-            }
-            catch (Exception)
+            if (!Enum.TryParse(arguments.At(0), out RoleType type))
             {
                 response = $"You provided an invalid role type: {arguments.At(0)}";
                 return false;
             }
-            
+
             if (arguments.Count == 2)
                 player = Player.Get(arguments.At(1));
+
             if (player == null)
             {
                 response = $"Defined player {arguments.At(1)} not found.";
@@ -64,17 +59,13 @@ namespace AdminRoleSelect.Commands
                 return false;
             }
 
-            if (Plugin.Instance.SelectedRoles.ContainsKey(player))
-                Plugin.Instance.SelectedRoles[player] = type;
-            else
-                Plugin.Instance.SelectedRoles.Add(player, type);
-
+            Plugin.Instance.SelectedRoles[player] = type;
             response = $"You have selected {type} for {player.Nickname}'s starting role.";
-            return false;
+            return true;
         }
 
         public string Command { get; } = "select";
-        public string[] Aliases { get; } = new[] { "s" };
+        public string[] Aliases { get; } = { "s" };
         public string Description { get; } = "Selects your spawn role.";
     }
 }

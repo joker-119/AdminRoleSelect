@@ -1,11 +1,9 @@
-using System.Collections.Generic;
 using System.Linq;
 using Exiled.API.Enums;
 using Exiled.API.Extensions;
 using Exiled.API.Features;
 using Exiled.Events.EventArgs;
 using MEC;
-using Utf8Json.Resolvers.Internal;
 
 namespace AdminRoleSelect
 {
@@ -18,7 +16,6 @@ namespace AdminRoleSelect
 
         public void OnChangingRole(ChangingRoleEventArgs ev)
         {
-            Log.Info($"{nameof(OnChangingRole)}: fired");
             if (!first)
                 return;
 
