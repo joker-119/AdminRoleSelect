@@ -12,8 +12,7 @@ namespace AdminRoleSelect.Commands
             RegisterCommand(new SelectRole());
         }
 
-        protected override bool ExecuteParent(ArraySegment<string> arguments, ICommandSender sender,
-            out string response)
+        protected override bool ExecuteParent(ArraySegment<string> arguments, ICommandSender sender, out string response)
         {
             response = "Valid sub commands: select RoleType\nIE: ars select Scp173";
             return false;

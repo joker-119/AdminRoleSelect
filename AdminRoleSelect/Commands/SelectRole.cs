@@ -46,6 +46,7 @@ namespace AdminRoleSelect.Commands
 
             if (arguments.Count == 2)
                 player = Player.Get(arguments.At(1));
+
             if (player == null)
             {
                 response = $"Defined player {arguments.At(1)} not found.";
@@ -60,11 +61,11 @@ namespace AdminRoleSelect.Commands
 
             Plugin.Instance.SelectedRoles[player] = type;
             response = $"You have selected {type} for {player.Nickname}'s starting role.";
-            return false;
+            return true;
         }
 
         public string Command { get; } = "select";
-        public string[] Aliases { get; } = new[] { "s" };
+        public string[] Aliases { get; } = { "s" };
         public string Description { get; } = "Selects your spawn role.";
     }
 }
