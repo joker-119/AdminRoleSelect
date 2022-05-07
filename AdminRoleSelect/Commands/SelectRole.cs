@@ -7,7 +7,6 @@ using Exiled.Permissions.Extensions;
 
 namespace AdminRoleSelect.Commands
 {
-    [CommandHandler(typeof(RemoteAdminCommandHandler))]
     public class SelectRole : ICommand
     {
         public bool Execute(ArraySegment<string> arguments, ICommandSender sender, out string response)

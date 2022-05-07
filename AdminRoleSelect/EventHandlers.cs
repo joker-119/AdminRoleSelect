@@ -1,11 +1,9 @@
-using System.Collections.Generic;
 using System.Linq;
 using Exiled.API.Enums;
 using Exiled.API.Extensions;
 using Exiled.API.Features;
 using Exiled.Events.EventArgs;
 using MEC;
-using Utf8Json.Resolvers.Internal;
 
 namespace AdminRoleSelect
 {
@@ -24,7 +22,7 @@ namespace AdminRoleSelect
 
             if (plugin.SelectedRoles.ContainsKey(ev.Player))
                 ev.NewRole = plugin.SelectedRoles[ev.Player];
-            else if (plugin.SelectedRoles.Values.Any(r => r == ev.NewRole && (r.GetSide() == Side.Scp || (Player.Get(r).Count() > 3 && r != RoleType.ClassD && r != RoleType.ChaosInsurgency))))
+            else if (plugin.SelectedRoles.Values.Any(r => r == ev.NewRole && (r.GetSide() == Side.Scp || (Player.Get(r).Count() > 3 && r != RoleType.ClassD && r != RoleType.ChaosConscript && r != RoleType.ChaosMarauder && r != RoleType.ChaosRepressor && r != RoleType.ChaosRifleman))))
                 ev.NewRole = RoleType.ClassD;
         }
 
