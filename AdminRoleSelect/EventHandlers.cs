@@ -16,12 +16,17 @@ namespace AdminRoleSelect
 
         public void OnChangingRole(ChangingRoleEventArgs ev)
         {
-            Log.Info($"{nameof(OnChangingRole)}: fired");
+            Log.Debug("Fired!", plugin.Config.Debug);
             if (!first)
                 return;
 
             if (plugin.SelectedRoles.ContainsKey(ev.Player))
-                ev.NewRole = plugin.SelectedRoles[ev.Player];
+            {
+                Timing.CallDelayed(2f, () =>
+                {
+                    ev.NewRole = plugin.SelectedRoles[ev.Player];
+                });
+            }
             else if (plugin.SelectedRoles.Values.Any(r => r == ev.NewRole && (r.GetSide() == Side.Scp || (Player.Get(r).Count() > 3 && r != RoleType.ClassD && r != RoleType.ChaosConscript && r != RoleType.ChaosMarauder && r != RoleType.ChaosRepressor && r != RoleType.ChaosRifleman))))
                 ev.NewRole = RoleType.ClassD;
         }

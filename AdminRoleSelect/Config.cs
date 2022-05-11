@@ -8,6 +8,9 @@ namespace AdminRoleSelect
         [Description("Whether or not this plugin is enabled.")]
         public bool IsEnabled { get; set; } = true;
 
+        [Description("Are DebugLogs enabled?")]
+        public bool Debug { get; set; } = false;
+
         [Description("Whether or not you can only select SCP roles with the command.")]
         public bool AllowScpOnly { get; set; } = false;
     }
